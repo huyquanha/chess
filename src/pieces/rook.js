@@ -1,14 +1,15 @@
 import Piece from './piece';
 
-export default class Queen extends Piece {
+export default class Rook extends Piece {
     constructor(player) {
-        super(player, player === 'black' ? "../images/black-queen.svg" : "../images/white-queen.svg");
+        super(player, player === 'black' ? "../images/black-rook.svg" : "../images/white-rook.svg");
     }
 
     isMovePossible([sourceRow, sourceCol], [destRow, destCol]) {
         let rowDiff = Math.abs(sourceRow - destRow);
         let colDiff = Math.abs(sourceCol - destCol);
-        return (rowDiff === 0 && colDiff > 0) || (rowDiff > 0 && colDiff === 0) || (rowDiff > 0 && colDiff === rowDiff);
+
+        return (rowDiff === 0 && colDiff > 0) || (rowDiff > 0 && colDiff === 0);
     }
 
     getSrcToDestPath([sourceRow, sourceCol], [destRow, destCol]) {
@@ -25,7 +26,7 @@ export default class Queen extends Piece {
                     path.push([sourceRow, i]);
                 }
             }
-        } else if (colDiff === 0) { //move vertically
+        } else { //move vertically
             if (rowDiff > 0) {
                 for (let i = sourceRow - 1; i > destRow; i--) {
                     path.push([i, sourceCol]);
@@ -33,24 +34,6 @@ export default class Queen extends Piece {
             } else {
                 for (let i = sourceRow + 1; i < destRow; i++) {
                     path.push([i, sourceCol]);
-                }
-            }
-        } else { //move diagonally => abs(colDiff)===abs(rowDiff)
-            if (rowDiff > 0 && colDiff > 0) {
-                for (let i = 1; i < rowDiff; i++) {
-                    path.push([sourceRow - i, sourceCol - i]);
-                }
-            } else if (rowDiff < 0 && colDiff < 0) {
-                for (let i = 1; i < rowDiff; i++) {
-                    path.push([sourceRow + i, sourceCol + i]);
-                }
-            } else if (rowDiff > 0 && colDiff < 0) {
-                for (let i = 1; i < rowDiff; i++) {
-                    path.push([sourceRow - i, sourceCol + i]);
-                }
-            } else {
-                for (let i = 1; i < rowDiff; i++) {
-                    path.push([sourceRow + i, sourceCol - i]);
                 }
             }
         }
