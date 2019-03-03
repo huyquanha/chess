@@ -2,7 +2,8 @@ import Piece from './piece';
 
 export default class King extends Piece {
     constructor(player) {
-        super(player, player === 'black' ? "../images/black-king.svg" : "../images/white-king.svg");
+        super(player, (player === 'black' ? "../images/black-king.svg"
+            : "../images/white-king.svg"));
     }
 
     isMovePossible([sourceRow, sourceCol], [destRow, destCol]) {

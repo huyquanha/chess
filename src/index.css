@@ -66,6 +66,10 @@ ol, ul {
     background-color: RGB(234, 240, 206);
 }
 
+.selected {
+    background-color: RGB(111,143,114);
+}
+
 #player-turn-box {
     width: 32px;
     height: 32px;

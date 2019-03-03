@@ -2,7 +2,7 @@ import Piece from './piece';
 
 export default class Pawn extends Piece {
     constructor(player) {
-        super(player, player === 'black' ? "../images/black-pawn.svg" : "../images/white-pawn.svg");
+        super(player, (player === 'black' ? "../images/black-pawn.svg" : "../images/white-pawn.svg"));
         this.initialPos = {
             blackSourceRow: 1, //top of the board
             whiteSourceRow: 6, //bottom of the board
@@ -10,8 +10,8 @@ export default class Pawn extends Piece {
     }
 
     isInitialPosition(sourceRow) {
-        return (this.player === 'white' && sourceRow == this.initialPos.whiteSourceRow) ||
-            (this.player === 'black' && sourceRow == this.initialPos.blackSourceRow);
+        return (this.player === 'white' && sourceRow === this.initialPos.whiteSourceRow) ||
+            (this.player === 'black' && sourceRow === this.initialPos.blackSourceRow);
     }
 
     isMovePossible([sourceRow, sourceCol], [destRow, destCol], isDestEnemyOccupied) {
