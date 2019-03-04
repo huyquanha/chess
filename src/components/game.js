@@ -21,14 +21,13 @@ export default class Game extends Component {
 
     handleClick(i,j) {
         const squares = this.state.squares.slice(); //make a copy
-        //let piece = squares[i][j]; //the selected piece, either null, or player====black/player===white
         let curPlayer = this.state.curPlayer;
         let sourceRow=this.state.sourceRow;
         let sourceCol=this.state.sourceCol;
         if (sourceRow===-1 && sourceCol===-1) { //no piece has been selected yet. you have to select your own piece and non-null piece
             if (!squares[i][j] || squares[i][j].player !== curPlayer) {
                 this.setState({
-                    status:'Invalid selection'
+                    status:'Invalid selection. Can\'t select empty or not your own piece'
                 });
             }
             else {
@@ -42,8 +41,7 @@ export default class Game extends Component {
             }
         }
         else { //another piece has been selected before
-            let sourcePiece = squares[sourceRow][sourceCol];
-            delete sourcePiece.style.backgroundColor;
+            squares[sourceRow][sourceCol].style={...squares[sourceRow][sourceCol].style,backgroundColor:""};
             if (squares[i][j] && squares[i][j].player===curPlayer) {
                 this.setState({
                     status: 'Wrong selection. Select source and destination again',
@@ -52,9 +50,11 @@ export default class Game extends Component {
                 })
             }
             else {
-                const isDestEnemyOccupied=squares[i][j]? true : false;
-                const isMovePossible = sourcePiece.isMovePossible([sourceRow,sourceCol],[i,j],isDestEnemyOccupied);
+                const isDestEnemyOccupied=squares[i][j] ? true : false;
+                const isMovePossible = squares[sourceRow][sourceCol].isMovePossible([sourceRow,sourceCol],[i,j],isDestEnemyOccupied);
                 const isPathEmpty = this.isPathEmpty([sourceRow,sourceCol],[i,j]);
+                console.log(isMovePossible);
+                console.log(isPathEmpty);
                 if (isMovePossible && isPathEmpty) {
                     const whiteFallenSoldiers = this.state.whiteFallenSoldiers.slice();
                     const blackFallenSoldiers = this.state.blackFallenSoldiers.slice();
@@ -66,8 +66,8 @@ export default class Game extends Component {
                             whiteFallenSoldiers.push(squares[i][j]);
                         }
                     }
-                    squares[i][j]=JSON.parse(JSON.stringify(sourcePiece));
-                    sourcePiece=null;
+                    squares[i][j]=squares[sourceRow][sourceCol];
+                    squares[sourceRow][sourceCol]=null;
                     this.setState({
                         squares: squares,
                         blackFallenSoldiers: blackFallenSoldiers,
@@ -80,7 +80,9 @@ export default class Game extends Component {
                 }
                 else {
                     this.setState({
-                        status: 'Invalid move. either move not possible or path not empty'
+                        status: 'Invalid move. either move not possible or path not empty. Please select again',
+                        sourceRow: -1,
+                        sourceCol: -1
                     })
                 }
             }
@@ -91,7 +93,7 @@ export default class Game extends Component {
         let piece=this.state.squares[sourceRow][sourceCol];
         let path = piece.getSrcToDestPath([sourceRow,sourceCol],[destRow,destCol]);
         for (let space of path) {
-            if (!space) {
+            if (this.state.squares[space[0]][space[1]]) {
                 return false;
             }
         }

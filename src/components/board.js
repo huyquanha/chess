@@ -13,7 +13,7 @@ export default class Board extends Component {
             <Square key={i*8+j}
                     shade={squareShade}
                     style={this.props.squares[i][j] ? this.props.squares[i][j].style : null}
-                    piece={this.props.squares[i][j]}
+                    //piece={this.props.squares[i][j]}
                     onClick={()=>this.props.onClick(i,j)}>
             </Square>
         )

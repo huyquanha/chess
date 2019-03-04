@@ -10,12 +10,12 @@ export default function FallenSoldierBlock(props) {
         <div className="fallen-soldier-block">
             <div className="board-row">
                 {whiteFallenSoldiers.map((soldier,index)=> {
-                    return <Square piece={soldier} key={index} style={soldier.style}></Square>
+                    return <Square key={index} style={soldier.style}></Square>
                 })}
             </div>
             <div className="board-row">
                 {blackFallenSoldiers.map((soldier,index) => {
-                    return <Square piece={soldier} key={index} style={soldier.style}></Square>
+                    return <Square key={index} style={soldier.style}></Square>
                 })}
             </div>
         </div>
