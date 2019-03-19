@@ -2,7 +2,7 @@ import Piece from './piece';
 
 export default class Pawn extends Piece {
     constructor(player) {
-        super(player, (player === 'white' ? "https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg"));
+        super(player, (player === 'white' ? "images/white-pawn.svg" : "images/black-pawn.svg"));
         this.initialPos = {
             blackSourceRow: 1, //top of the board
             whiteSourceRow: 6, //bottom of the board

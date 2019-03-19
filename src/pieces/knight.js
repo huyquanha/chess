@@ -2,7 +2,7 @@ import Piece from './piece';
 
 export default class Knight extends Piece {
     constructor(player) {
-        super(player, (player === 'white' ? "https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg"));
+        super(player, (player === 'white' ? "images/white-knight.svg" : "images/black-knight.svg"));
     }
 
     isMovePossible([sourceRow, sourceCol], [destRow, destCol]) {
