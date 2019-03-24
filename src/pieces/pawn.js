@@ -1,8 +1,8 @@
 import Piece from './piece';
 
 export default class Pawn extends Piece {
-    constructor(player) {
-        super(player, (player === 'white' ? "images/white-pawn.svg" : "images/black-pawn.svg"));
+    constructor(player,initPos) {
+        super(player, (player === 'white' ? "images/white-pawn.svg" : "images/black-pawn.svg"),initPos);
         this.initialPos = {
             blackSourceRow: 1, //top of the board
             whiteSourceRow: 6, //bottom of the board
@@ -18,10 +18,13 @@ export default class Pawn extends Piece {
         let colDiff = Math.abs(sourceCol - destCol);
         let rowDiff = this.player === 'white' ? sourceRow - destRow : destRow - sourceRow;
 
-        if (isDestEnemyOccupied && rowDiff === 1 && colDiff === 1) {
-            return true;
+        if (isDestEnemyOccupied) {
+            if (rowDiff===1 && colDiff===1) {
+                return true;
+            }
+            return false;
         }
-        if (this.isInitialPosition(sourceRow)) {
+        else if (this.isInitialPosition(sourceRow)) {
             return colDiff === 0 && [1, 2].includes(rowDiff);
         } else {
             return colDiff === 0 && rowDiff === 1;
@@ -35,6 +38,30 @@ export default class Pawn extends Piece {
         } else {
             return [];
         }
+    }
+
+    //this method is to get the moves where a pawn can eat other pieces, not the moves the pawn can go
+    //for other pieces, the move they can eat and the move they go are the same, but not for pawn
+    getPossibleMoves() {
+        const [row,col] = this.getCurrentPos();
+        let moves=[];
+        if (this.player ==='white') { //pawn can eat up, or the row should decrease
+            if (this.inBoard(row-1,col-1)) {
+                moves.push([row-1,col-1]);
+            }
+            if (this.inBoard(row-1,col+1)) {
+                moves.push([row-1,col+1]);
+            }
+        }
+        else { //pawn eat down, or the row increase
+            if (this.inBoard(row+1,col-1)) {
+                moves.push([row+1,col-1]);
+            }
+            if (this.inBoard(row+1,col+1)) {
+                moves.push([row+1,col+1]);
+            }
+        }
+        return moves;
     }
 
 }
