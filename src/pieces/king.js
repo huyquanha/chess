@@ -14,7 +14,8 @@ export default class King extends Piece {
             || (!this.hasMoved() && rowDiff===0 && colDiff===2);
     }
 
-    getSrcToDestPath([sourceRow, sourceCol], [destRow, destCol]) { //only move 1 step => no node in between
+    getPathToDest([destRow, destCol]) { //only move 1 step => no node in between
+        let [sourceRow,sourceCol] = this.getCurrentPos();
         let colDiff = Math.abs(sourceCol - destCol);
         if (colDiff<2) {
             return [];

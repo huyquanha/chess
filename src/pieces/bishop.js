@@ -12,7 +12,8 @@ export default class Bishop extends Piece {
         return (rowDiff > 0 && rowDiff === colDiff);
     }
 
-    getSrcToDestPath([sourceRow, sourceCol], [destRow, destCol]) {
+    getPathToDest([destRow, destCol]) {
+        let [sourceRow,sourceCol] = this.getCurrentPos();
         let rowDiff = sourceRow - destRow;
         let colDiff = sourceCol - destCol;
         let path = [];

@@ -11,7 +11,7 @@ export default class Knight extends Piece {
         return (rowDiff !== colDiff && [1, 2].includes(rowDiff) && [1, 2].includes(colDiff));
     }
 
-    getSrcToDestPath([sourceRow, destRow], [sourceCol, destCol]) { //knight can jump over anybody -> []
+    getPathToDest([sourceCol, destCol]) { //knight can jump over anybody -> []
         return [];
     }
 

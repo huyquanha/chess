@@ -207,7 +207,8 @@ export default class Game extends Component {
 
     handleEnterCastle(sourceRow, sourceCol, destCol) {
         const squares = this.state.squares.slice();
-        if (this.state.isCheckMated || this.kingInDanger(squares[sourceRow][sourceCol].getSrcToDestPath()[0])) {
+        if (this.state.isCheckMated ||
+            this.kingInDanger(squares[sourceRow][sourceCol].getPathToDest([sourceRow,destCol])[0])) {
             this.setState({
                 status: 'Cannot enter castle when king is checkmated/the path is endangered. Select again',
                 sourceRow: -1,
@@ -245,6 +246,7 @@ export default class Game extends Component {
                 //check if the new rook is going to check mate the other king at its new position
                 let isCheckMated = this.kingCheckMated(squares[sourceRow][rookDestCol]);
                 let status = isCheckMated ? 'Checkmated. Please resolve' : '';
+                let checkMater = isCheckMated ? squares[sourceRow][rookDestCol] : null;
 
                 this.setState({
                     squares: squares,
@@ -254,7 +256,8 @@ export default class Game extends Component {
                     whitePossibleMoves: whiteMap,
                     blackPossibleMoves: blackMap,
                     curPlayer: curPlayer === 'white' ? 'black' : 'white',
-                    isCheckMated: isCheckMated
+                    isCheckMated: isCheckMated,
+                    checkMater: checkMater,
                 })
             } else {
                 this.setState({
@@ -300,6 +303,7 @@ export default class Game extends Component {
             //check if the just evolved piece check mate the opponent's king
             let isCheckMated = this.kingCheckMated(squares[sourceRow][sourceCol]);
             let status = isCheckMated ? 'Checkmated. Please resolve' : '';
+            let checkMater = isCheckMated ? squares[sourceRow][sourceCol] : null;
             this.setState({
                 squares: squares,
                 whiteFallenSoldiers: whiteFallenSoldiers,
@@ -309,6 +313,7 @@ export default class Game extends Component {
                 status: status,
                 curPlayer: curPlayer === 'white' ? 'black' : 'white',
                 isCheckMated: isCheckMated,
+                checkMater: checkMater,
             })
         } else {
             this.setState({
@@ -355,7 +360,7 @@ export default class Game extends Component {
                 }
                 else {
                     const kingPos = curPlayer === 'white' ? this.state.whiteKingPos : this.state.blackKingPos;
-                    for (let space of checkMater.getSrcToDestPath(checkMater.getCurrentPos(),kingPos)) {
+                    for (let space of checkMater.getPathToDest(kingPos)) {
                         if (destRow===space[0] && destCol ===space[1]) {
                             isCheckMated = false;
                         }
@@ -394,7 +399,7 @@ export default class Game extends Component {
 
     isPathEmpty([sourceRow, sourceCol], [destRow, destCol]) {
         let piece = this.state.squares[sourceRow][sourceCol];
-        let path = piece.getSrcToDestPath([sourceRow, sourceCol], [destRow, destCol]);
+        let path = piece.getPathToDest([destRow, destCol]);
         for (let space of path) {
             if (this.state.squares[space[0]][space[1]]) {
                 return false;

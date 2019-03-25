@@ -11,7 +11,8 @@ export default class Queen extends Piece {
         return (rowDiff === 0 && colDiff > 0) || (rowDiff > 0 && colDiff === 0) || (rowDiff > 0 && colDiff === rowDiff);
     }
 
-    getSrcToDestPath([sourceRow, sourceCol], [destRow, destCol]) {
+    getPathToDest([destRow, destCol]) {
+        let [sourceRow,sourceCol] = this.getCurrentPos();
         let rowDiff = sourceRow - destRow;
         let colDiff = sourceCol - destCol;
         let path = [];

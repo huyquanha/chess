@@ -31,7 +31,8 @@ export default class Pawn extends Piece {
         }
     }
 
-    getSrcToDestPath([sourceRow, sourceCol], [destRow, destCol]) { //can move 1 or 2 step. If move 2 step, there's a square in between src and dest
+    getPathToDest([destRow, destCol]) { //can move 1 or 2 step. If move 2 step, there's a square in between src and dest
+        let [sourceRow,sourceCol] = this.getCurrentPos();
         let rowDiff = this.player === 'white' ? sourceRow - destRow : destRow - sourceRow;
         if (rowDiff === 2) {
             return [[(sourceRow + destRow) / 2, sourceCol]];
