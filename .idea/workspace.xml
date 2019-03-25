@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32d27a61-bab9-4521-bf5e-a1fd34325a43" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/bishop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/bishop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/king.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/king.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/knight.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/knight.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/pawn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/pawn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/piece.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/piece.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/queen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/queen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/rook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/rook.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -60,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="155" column="41" lean-forward="true" selection-start-line="140" selection-start-column="12" selection-end-line="155" selection-end-column="41" />
+            <state relative-caret-position="168">
+              <caret line="369" column="5" selection-start-line="369" selection-start-column="5" selection-end-line="369" selection-end-column="5" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -246,16 +237,15 @@
       <workItem from="1552891927560" duration="15532000" />
       <workItem from="1553151059795" duration="2909000" />
       <workItem from="1553201157758" duration="33271000" />
-      <workItem from="1553460421411" duration="3599000" />
+      <workItem from="1553460421411" duration="5830000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113670000" />
+    <option name="totallyTimeSpent" value="115901000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17170112" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -271,7 +261,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.3285968" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24511546" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.29840142" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -417,8 +407,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="155" column="41" lean-forward="true" selection-start-line="140" selection-start-column="12" selection-end-line="155" selection-end-column="41" />
+        <state relative-caret-position="168">
+          <caret line="369" column="5" selection-start-line="369" selection-start-column="5" selection-end-line="369" selection-end-column="5" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

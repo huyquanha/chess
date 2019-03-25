@@ -30,7 +30,7 @@ export default class Game extends Component {
             blackKingPos: [0, 4],
             isCheckMated: false,
             checkMater:null,
-        }
+        };
         this.handleClick = this.handleClick.bind(this);
         this.handleEvolve = this.handleEvolve.bind(this);
     }
@@ -135,105 +135,73 @@ export default class Game extends Component {
         let whiteKingPos = this.state.whiteKingPos;
         let blackKingPos = this.state.blackKingPos;
         let curPlayer = this.state.curPlayer;
-        let currentCheckMateState = this.state.isCheckMated;
-        let checkMater = this.state.checkMater;
-        if (currentCheckMateState) { //if the current player's king is still being checkmated => mean we have to resolve it
-            if (squares[srcRow][srcCol] instanceof King) { //if we move the king
-                if(this.kingInDanger([destRow,destCol])) {
-                    this.setState({
-                        status:'Cannot move king there. Checkmate endangered. Select again',
-                        sourceRow:-1,
-                        sourceCol:-1,
-                    });
-                    return;
-                }
-                else {
-                    currentCheckMateState=false;
-                    checkMater=null;
-                }
-            }
-            else { //if we move something else, it either has to eat the checkmater, or block the check path
-                if (isDestEnemyOccupied && squares[destRow][destCol]===checkMater) {
-                    //if we are going to eat the checkmater
-                    currentCheckMateState=false;
-                    checkMater=null;
-                }
-                else {
-                    const kingPos = curPlayer === 'white' ? this.state.whiteKingPos : this.state.blackKingPos;
-                    for (let space of checkMater.getSrcToDestPath(checkMater.getCurrentPos(),kingPos)) {
-                        if (destRow===space[0] && destCol ===space[1]) {
-                            currentCheckMateState = false;
-                            checkMater=null;
-                        }
-                    }
-                    if (currentCheckMateState) {
-                        this.setState({
-                            status:'The next move does not block check path. Select again',
-                            sourceRow: -1,
-                            sourceCol: -1,
-                        })
-                        return;
-                    }
-                }
-            }
-        }
-        if (isDestEnemyOccupied) {
-            squares[destRow][destCol].clearMoves();
-            if (curPlayer === 'white') {
-                blackMap.delete(squares[destRow][destCol]);
-                blackFallenSoldiers.push(squares[destRow][destCol]);
-            } else {
-                whiteMap.delete(squares[destRow][destCol]);
-                whiteFallenSoldiers.push(squares[destRow][destCol]);
-            }
-        }
-        squares[destRow][destCol] = squares[srcRow][srcCol];
-        squares[destRow][destCol].addMove([destRow, destCol]);
-        squares[srcRow][srcCol] = null;
-        //update the possible moves of the piece that is just moved
-        this.updatePossibleMoves(destRow, destCol, curPlayer === 'white' ? whiteMap : blackMap);
-
-        if (squares[destRow][destCol] instanceof King) {
-            if (curPlayer === 'white') {
-                whiteKingPos = [destRow, destCol];
-            } else {
-                blackKingPos = [destRow, destCol];
-            }
-        }
-
-        if (this.isEvolvablePawn([destRow, destCol])) {
-            this.highlight(squares[destRow][destCol], true);
+        let [checkMateState,status] = this.resolveCheckMate(srcRow,srcCol,destRow,destCol,isDestEnemyOccupied);
+        if (checkMateState) {
             this.setState({
-                squares: squares,
-                blackFallenSoldiers: blackFallenSoldiers,
-                whiteFallenSoldiers: whiteFallenSoldiers,
-                whitePossibleMoves: whiteMap,
-                blackPossibleMoves: blackMap,
-                sourceRow: destRow,
-                sourceCol: destCol,
-                status: 'Please select one of the drop down type to evolve'
-            })
-        } else {
-            //after moving, see if the piece in the new position checkmate the opponent's king
-            currentCheckMateState = this.kingCheckMated(squares[destRow][destCol]);
-            let status = currentCheckMateState ? 'Checkmated. Please resolve' : '';
-            checkMater = currentCheckMateState ? squares[destRow][destCol] : null;
-
-            this.setState({
-                squares: squares,
-                blackFallenSoldiers: blackFallenSoldiers,
-                whiteFallenSoldiers: whiteFallenSoldiers,
-                whitePossibleMoves: whiteMap,
-                blackPossibleMoves: blackMap,
-                whiteKingPos: whiteKingPos,
-                blackKingPos: blackKingPos,
+                status: status,
                 sourceRow: -1,
                 sourceCol: -1,
-                status: status,
-                curPlayer: curPlayer === 'white' ? 'black' : 'white',
-                isCheckMated: currentCheckMateState,
-                checkMater: checkMater,
-            })
+            });
+        }
+        else {
+            if (isDestEnemyOccupied) {
+                squares[destRow][destCol].clearMoves();
+                if (curPlayer === 'white') {
+                    blackMap.delete(squares[destRow][destCol]);
+                    blackFallenSoldiers.push(squares[destRow][destCol]);
+                } else {
+                    whiteMap.delete(squares[destRow][destCol]);
+                    whiteFallenSoldiers.push(squares[destRow][destCol]);
+                }
+            }
+            squares[destRow][destCol] = squares[srcRow][srcCol];
+            squares[destRow][destCol].addMove([destRow, destCol]);
+            squares[srcRow][srcCol] = null;
+            //update the possible moves of the piece that is just moved
+            this.updatePossibleMoves(destRow, destCol, curPlayer === 'white' ? whiteMap : blackMap);
+
+            if (squares[destRow][destCol] instanceof King) {
+                if (curPlayer === 'white') {
+                    whiteKingPos = [destRow, destCol];
+                } else {
+                    blackKingPos = [destRow, destCol];
+                }
+            }
+
+            if (this.isEvolvablePawn([destRow, destCol])) {
+                this.highlight(squares[destRow][destCol], true);
+                this.setState({
+                    squares: squares,
+                    blackFallenSoldiers: blackFallenSoldiers,
+                    whiteFallenSoldiers: whiteFallenSoldiers,
+                    whitePossibleMoves: whiteMap,
+                    blackPossibleMoves: blackMap,
+                    sourceRow: destRow,
+                    sourceCol: destCol,
+                    status: 'Please select one of the drop down type to evolve'
+                })
+            } else {
+                //after moving, see if the piece in the new position checkmate the opponent's king
+                checkMateState = this.kingCheckMated(squares[destRow][destCol]);
+                status = checkMateState ? 'Checkmated. Please resolve' : '';
+                let checkMater = checkMateState ? squares[destRow][destCol] : null;
+
+                this.setState({
+                    squares: squares,
+                    blackFallenSoldiers: blackFallenSoldiers,
+                    whiteFallenSoldiers: whiteFallenSoldiers,
+                    whitePossibleMoves: whiteMap,
+                    blackPossibleMoves: blackMap,
+                    whiteKingPos: whiteKingPos,
+                    blackKingPos: blackKingPos,
+                    sourceRow: -1,
+                    sourceCol: -1,
+                    status: status,
+                    curPlayer: curPlayer === 'white' ? 'black' : 'white',
+                    isCheckMated: checkMateState,
+                    checkMater: checkMater,
+                })
+            }
         }
     }
 
@@ -365,6 +333,42 @@ export default class Game extends Component {
         return false;
     }
 
+    resolveCheckMate(srcRow,srcCol,destRow,destCol,isDestEnemyOccupied) {
+        const squares =this.state.squares.slice();
+        const curPlayer = this.state.curPlayer;
+        let isCheckMated = this.state.isCheckMated;
+        let checkMater = this.state.checkMater;
+        let status='';
+        if (isCheckMated) {
+            if (squares[srcRow][srcCol] instanceof King) { //if we move the king
+                if(!this.kingInDanger([destRow,destCol])) {
+                    isCheckMated=false;
+                }
+                else {
+                    status = 'Cannot move king there. Checkmate Endangered. Select again';
+                }
+            }
+            else { //if we move something else, it either has to eat the checkmater, or block the check path
+                if (isDestEnemyOccupied && squares[destRow][destCol]===checkMater) {
+                    //if we are going to eat the checkmater
+                    isCheckMated=false;
+                }
+                else {
+                    const kingPos = curPlayer === 'white' ? this.state.whiteKingPos : this.state.blackKingPos;
+                    for (let space of checkMater.getSrcToDestPath(checkMater.getCurrentPos(),kingPos)) {
+                        if (destRow===space[0] && destCol ===space[1]) {
+                            isCheckMated = false;
+                        }
+                    }
+                    if (isCheckMated) {
+                        status='The move does not block check path. Select again';
+                    }
+                }
+            }
+        }
+        return [isCheckMated,status];
+    }
+
     //this is only called if we confirmed it's a king being moved, so no need to check
     kingInDanger([destRow, destCol]) {
         const curPlayer = this.state.curPlayer;
@@ -384,11 +388,8 @@ export default class Game extends Component {
     isEvolvablePawn([row, col]) {
         const squares = this.state.squares.slice();
         const curPlayer = this.state.curPlayer;
-        if (row !== -1 && col !== -1 && squares[row][col] instanceof Pawn
-            && row === (curPlayer === 'white' ? 0 : 7)) {
-            return true;
-        }
-        return false;
+        return (row !== -1 && col !== -1 && squares[row][col] instanceof Pawn
+            && row === (curPlayer === 'white' ? 0 : 7));
     }
 
     isPathEmpty([sourceRow, sourceCol], [destRow, destCol]) {
