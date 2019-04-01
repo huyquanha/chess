@@ -5,7 +5,8 @@ export default class Queen extends Piece {
         super(player, (player === 'white' ? "images/white-queen.svg" : "images/black-queen.svg"),initPos);
     }
 
-    isMovePossible([sourceRow, sourceCol], [destRow, destCol]) {
+    isMovePossible([destRow, destCol]) {
+        let [sourceRow, sourceCol] = this.getCurrentPos();
         let rowDiff = Math.abs(sourceRow - destRow);
         let colDiff = Math.abs(sourceCol - destCol);
         return (rowDiff === 0 && colDiff > 0) || (rowDiff > 0 && colDiff === 0) || (rowDiff > 0 && colDiff === rowDiff);
@@ -82,5 +83,9 @@ export default class Queen extends Piece {
             }
         }
         return moves;
+    }
+
+    getPossibleTargets() {
+        return this.getPossibleMoves();
     }
 }

@@ -5,7 +5,8 @@ export default class Rook extends Piece {
         super(player, (player === 'white' ? "images/white-rook.svg" : "images/black-rook.svg"),initPos);
     }
 
-    isMovePossible([sourceRow, sourceCol], [destRow, destCol]) {
+    isMovePossible([destRow, destCol]) {
+        let [sourceRow, sourceCol] = this.getCurrentPos();
         let rowDiff = Math.abs(sourceRow - destRow);
         let colDiff = Math.abs(sourceCol - destCol);
 
@@ -57,5 +58,9 @@ export default class Rook extends Piece {
             }
         }
         return moves;
+    }
+
+    getPossibleTargets() {
+        return this.getPossibleMoves();
     }
 }

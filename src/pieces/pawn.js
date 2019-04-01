@@ -9,12 +9,14 @@ export default class Pawn extends Piece {
         }
     }
 
-    isInitialPosition(sourceRow) {
-        return (this.player === 'white' && sourceRow === this.initialPos.whiteSourceRow) ||
-            (this.player === 'black' && sourceRow === this.initialPos.blackSourceRow);
+    isInitialPosition() {
+        let [row,col] = this.getCurrentPos();
+        return (this.player === 'white' && row === this.initialPos.whiteSourceRow) ||
+            (this.player === 'black' && row === this.initialPos.blackSourceRow);
     }
 
-    isMovePossible([sourceRow, sourceCol], [destRow, destCol], isDestEnemyOccupied) {
+    isMovePossible([destRow, destCol], isDestEnemyOccupied) {
+        let [sourceRow,sourceCol] = this.getCurrentPos();
         let colDiff = Math.abs(sourceCol - destCol);
         let rowDiff = this.player === 'white' ? sourceRow - destRow : destRow - sourceRow;
 
@@ -24,7 +26,7 @@ export default class Pawn extends Piece {
             }
             return false;
         }
-        else if (this.isInitialPosition(sourceRow)) {
+        else if (this.isInitialPosition()) {
             return colDiff === 0 && [1, 2].includes(rowDiff);
         } else {
             return colDiff === 0 && rowDiff === 1;
@@ -41,28 +43,48 @@ export default class Pawn extends Piece {
         }
     }
 
-    //this method is to get the moves where a pawn can eat other pieces, not the moves the pawn can go
-    //for other pieces, the move they can eat and the move they go are the same, but not for pawn
     getPossibleMoves() {
         const [row,col] = this.getCurrentPos();
         let moves=[];
-        if (this.player ==='white') { //pawn can eat up, or the row should decrease
-            if (this.inBoard(row-1,col-1)) {
-                moves.push([row-1,col-1]);
+        if (this.player==='white') { //move up, row decrease
+            if (this.inBoard(row-1,col)) {
+                moves.push([row-1,col]);
             }
-            if (this.inBoard(row-1,col+1)) {
-                moves.push([row-1,col+1]);
+            if (this.isInitialPosition()) { //if initial position, [row-2,col] is of course in board => don't need to check
+                moves.push([row-2,col]);
             }
         }
-        else { //pawn eat down, or the row increase
-            if (this.inBoard(row+1,col-1)) {
-                moves.push([row+1,col-1]);
+        else {
+            if (this.inBoard(row+1,col)) {
+                moves.push([row+1,col]);
             }
-            if (this.inBoard(row+1,col+1)) {
-                moves.push([row+1,col+1]);
+            if (this.isInitialPosition(row)) { //if in initial position, [row+2,col] is of course in board => dont' need to check
+                moves.push([row+2,col]);
             }
         }
         return moves;
     }
 
+    //for other pieces, the move they can eat and the move they go are the same, but not for pawn
+    getPossibleTargets() {
+        const [row,col] = this.getCurrentPos();
+        let targets=[];
+        if (this.player ==='white') { //pawn can eat up, or the row should decrease
+            if (this.inBoard(row-1,col-1)) {
+                targets.push([row-1,col-1]);
+            }
+            if (this.inBoard(row-1,col+1)) {
+                targets.push([row-1,col+1]);
+            }
+        }
+        else { //pawn eat down, or the row increase
+            if (this.inBoard(row+1,col-1)) {
+                targets.push([row+1,col-1]);
+            }
+            if (this.inBoard(row+1,col+1)) {
+                targets.push([row+1,col+1]);
+            }
+        }
+        return targets;
+    }
 }

@@ -5,7 +5,8 @@ export default class Bishop extends Piece {
         super(player, (player === 'white' ? "images/white-bishop.svg" : "images/black-bishop.svg"),initPos);
     }
 
-    isMovePossible([sourceRow, sourceCol], [destRow, destCol]) {
+    isMovePossible([destRow, destCol]) {
+        let [sourceRow,sourceCol] = this.getCurrentPos();
         let rowDiff = Math.abs(sourceRow - destRow);
         let colDiff = Math.abs(sourceCol - destCol);
 
@@ -53,5 +54,9 @@ export default class Bishop extends Piece {
             }
         }
         return moves;
+    }
+
+    getPossibleTargets() {
+        return this.getPossibleMoves();
     }
 }

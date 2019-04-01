@@ -5,13 +5,14 @@ export default class Knight extends Piece {
         super(player, (player === 'white' ? "images/white-knight.svg" : "images/black-knight.svg"),initPos);
     }
 
-    isMovePossible([sourceRow, sourceCol], [destRow, destCol]) {
+    isMovePossible([destRow, destCol]) {
+        let [sourceRow, sourceCol] = this.getCurrentPos();
         let rowDiff = Math.abs(sourceRow - destRow);
         let colDiff = Math.abs(sourceCol - destCol);
         return (rowDiff !== colDiff && [1, 2].includes(rowDiff) && [1, 2].includes(colDiff));
     }
 
-    getPathToDest([sourceCol, destCol]) { //knight can jump over anybody -> []
+    getPathToDest([destRow, destCol]) { //knight can jump over anybody -> []
         return [];
     }
 
@@ -28,5 +29,9 @@ export default class Knight extends Piece {
             }
         }
         return moves;
+    }
+
+    getPossibleTargets() {
+        return this.getPossibleMoves();
     }
 }
