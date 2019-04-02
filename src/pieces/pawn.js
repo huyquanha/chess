@@ -21,10 +21,7 @@ export default class Pawn extends Piece {
         let rowDiff = this.player === 'white' ? sourceRow - destRow : destRow - sourceRow;
 
         if (isDestEnemyOccupied) {
-            if (rowDiff===1 && colDiff===1) {
-                return true;
-            }
-            return false;
+            return (rowDiff === 1 && colDiff === 1);
         }
         else if (this.isInitialPosition()) {
             return colDiff === 0 && [1, 2].includes(rowDiff);

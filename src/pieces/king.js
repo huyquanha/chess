@@ -39,8 +39,4 @@ export default class King extends Piece {
         }
         return moves;
     }
-
-    getPossibleTargets() {
-        return this.getPossibleMoves();
-    }
 }

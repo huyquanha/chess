@@ -84,8 +84,4 @@ export default class Queen extends Piece {
         }
         return moves;
     }
-
-    getPossibleTargets() {
-        return this.getPossibleMoves();
-    }
 }

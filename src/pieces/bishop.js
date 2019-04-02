@@ -55,8 +55,4 @@ export default class Bishop extends Piece {
         }
         return moves;
     }
-
-    getPossibleTargets() {
-        return this.getPossibleMoves();
-    }
 }

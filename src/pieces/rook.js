@@ -59,8 +59,4 @@ export default class Rook extends Piece {
         }
         return moves;
     }
-
-    getPossibleTargets() {
-        return this.getPossibleMoves();
-    }
 }
