@@ -32,6 +32,9 @@ export default class Game extends Component {
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleEvolve = this.handleEvolve.bind(this);
+        this.handleStartOver = this.handleStartOver.bind(this);
+        //this.handleUndo = this.handleUndo.bind(this);
+        //this.handleRedo = this.handleRedo.bind(this);
     }
 
     populatePieces(squares) {
@@ -493,6 +496,11 @@ export default class Game extends Component {
                     <div className="status">{status}</div>
                     <FallenSoldierBlock whiteFallenSoldiers={this.state.whiteFallenSoldiers}
                                         blackFallenSoldiers={this.state.blackFallenSoldiers}/>
+                    <div className="action-buttons">
+                        <button onClick={this.handleUndo}>Undo</button>
+                        <button onClick={this.handleRedo}>Redo</button>
+                        <button onClick={this.handleStartOver}>Start Over</button>
+                    </div>
                 </div>
             </div>
         )
@@ -584,5 +592,30 @@ export default class Game extends Component {
             }
         }
         return false;
+    }
+
+    //handle start over action button
+    handleStartOver() {
+        const squares = initChessBoard();
+        const [whitePieces, blackPieces] = this.populatePieces(squares);
+        this.setState({
+            squares: squares,
+            curPlayer: 'white',
+            sourceRow: -1,
+            sourceCol: -1,
+            status: '',
+            whiteFallenSoldiers: [],
+            blackFallenSoldiers: [],
+            whitePieces: whitePieces,
+            blackPieces: blackPieces,
+            whiteKingPos: [7, 4],
+            blackKingPos: [0, 4],
+            checkMater: null,
+        })
+    }
+
+    //handle undo action button
+    handleUndo() {
+
     }
 }

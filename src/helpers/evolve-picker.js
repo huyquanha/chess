@@ -24,15 +24,14 @@ export default class EvolvePicker extends Component {
     render() {
         return (
             <form className="evolve-picker" onSubmit={this.handleSubmit}>
-                <label>Pick a type to evolve: &nbsp;
-                    <select value={this.state.value} onChange={this.handleChange}>
-                        <option value="queen">Queen</option>
-                        <option value="rook">Rook</option>
-                        <option value="knight">Knight</option>
-                        <option value="bishop">Bishop</option>
-                    </select>
-                    <input type="submit" value="Submit"/>
-                </label>
+                <label>Pick a type to evolve</label>
+                <select value={this.state.value} onChange={this.handleChange}>
+                    <option value="queen">Queen</option>
+                    <option value="rook">Rook</option>
+                    <option value="knight">Knight</option>
+                    <option value="bishop">Bishop</option>
+                </select>
+                <input type="submit" value="Submit"/>
             </form>
         )
     }
