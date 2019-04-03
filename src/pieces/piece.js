@@ -3,6 +3,7 @@ export default class Piece {
         this.player = player;
         this.style = {backgroundImage: "url('"+imageUrl+"')"};
         this.moves = [initPos];
+        this.className=null;
     }
 
     addMove([destRow,destCol]) {

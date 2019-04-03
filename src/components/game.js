@@ -460,11 +460,12 @@ export default class Game extends Component {
         return true;
     }
 
-    highlight(piece, shouldHighlight) {
+    highlight(piece,shouldHighlight) {
         if (shouldHighlight) {
-            piece.style = {...piece.style, backgroundColor: "RGB(111,143,114)"};
-        } else {
-            piece.style = {...piece.style, backgroundColor: ""};
+            piece.className="selected";
+        }
+        else {
+            piece.className=null;
         }
     }
 
@@ -489,7 +490,6 @@ export default class Game extends Component {
                                  this.state.curPlayer === 'white' ? "#fff" : "#000"
                          }}/>
                     <EvolvePicker onSubmit={(type) => this.handleEvolve(type)}/>
-                    <br/>
                     <div className="status">{status}</div>
                     <FallenSoldierBlock whiteFallenSoldiers={this.state.whiteFallenSoldiers}
                                         blackFallenSoldiers={this.state.blackFallenSoldiers}/>

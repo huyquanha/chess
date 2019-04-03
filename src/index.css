@@ -22,14 +22,10 @@ ol, ul {
     background: transparent;
     border: 1px solid transparent;
     float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
     height: 48px;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
-    text-align: center;
     width: 48px;
 }
 
@@ -42,18 +38,20 @@ ol, ul {
 }
 
 .game {
-    display: flex;
+    display: flex; /*display the child elements in one direction, in this case row direction => horizontal*/
     flex-direction: row;
+    margin-left: 25%;
+    margin-top: 100px;
 }
 
 .game-info {
     margin-left: 20px;
 }
 
-
-.icons-attribution, .game-status, .fallen-soldier-block {
+.icons-attribution, .status, .fallen-soldier-block, .evolve-picker {
     margin-top: 20px;
     min-height: 50px;
+    /*border: 1px solid black;*/
 }
 
 

@@ -23,7 +23,7 @@ export default class EvolvePicker extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="evolve-picker" onSubmit={this.handleSubmit}>
                 <label>Pick a type to evolve: &nbsp;
                     <select value={this.state.value} onChange={this.handleChange}>
                         <option value="queen">Queen</option>
