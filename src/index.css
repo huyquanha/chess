@@ -48,7 +48,7 @@ ol, ul {
     margin-left: 20px;
 }
 
-.icons-attribution, .status, .fallen-soldier-block, .evolve-picker {
+.icons-attribution, .status, .fallen-soldier-block, .evolve-picker, .action-buttons {
     margin-top: 20px;
     min-height: 50px;
     /*border: 1px solid black;*/

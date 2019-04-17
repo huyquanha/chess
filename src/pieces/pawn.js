@@ -1,8 +1,8 @@
 import Piece from './piece';
 
 export default class Pawn extends Piece {
-    constructor(player,initPos) {
-        super(player, (player === 'white' ? "images/white-pawn.svg" : "images/black-pawn.svg"),initPos);
+    constructor(player,initPos, hasMoved) {
+        super(player, (player === 'white' ? "images/white-pawn.svg" : "images/black-pawn.svg"),initPos, hasMoved);
         this.initialPos = {
             blackSourceRow: 1, //top of the board
             whiteSourceRow: 6, //bottom of the board
@@ -10,13 +10,13 @@ export default class Pawn extends Piece {
     }
 
     isInitialPosition() {
-        let [row,col] = this.getCurrentPos();
+        let [row,col] = this.currentPos;
         return (this.player === 'white' && row === this.initialPos.whiteSourceRow) ||
             (this.player === 'black' && row === this.initialPos.blackSourceRow);
     }
 
     isMovePossible([destRow, destCol], isDestEnemyOccupied) {
-        let [sourceRow,sourceCol] = this.getCurrentPos();
+        let [sourceRow,sourceCol] = this.currentPos;
         let colDiff = Math.abs(sourceCol - destCol);
         let rowDiff = this.player === 'white' ? sourceRow - destRow : destRow - sourceRow;
 
@@ -31,7 +31,7 @@ export default class Pawn extends Piece {
     }
 
     getPathToDest([destRow, destCol]) { //can move 1 or 2 step. If move 2 step, there's a square in between src and dest
-        let [sourceRow,sourceCol] = this.getCurrentPos();
+        let [sourceRow,sourceCol] = this.currentPos;
         let rowDiff = this.player === 'white' ? sourceRow - destRow : destRow - sourceRow;
         if (rowDiff === 2) {
             return [[(sourceRow + destRow) / 2, sourceCol]];
@@ -41,7 +41,7 @@ export default class Pawn extends Piece {
     }
 
     getPossibleMoves() {
-        const [row,col] = this.getCurrentPos();
+        const [row,col] = this.currentPos;
         let moves=[];
         if (this.player==='white') { //move up, row decrease
             if (this.inBoard(row-1,col)) {
@@ -64,7 +64,7 @@ export default class Pawn extends Piece {
 
     //for other pieces, the move they can eat and the move they go are the same, but not for pawn
     getPossibleTargets() {
-        const [row,col] = this.getCurrentPos();
+        const [row,col] = this.currentPos;
         let targets=[];
         if (this.player ==='white') { //pawn can eat up, or the row should decrease
             if (this.inBoard(row-1,col-1)) {

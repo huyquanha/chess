@@ -1,19 +1,19 @@
 import Piece from './piece';
 
 export default class Queen extends Piece {
-    constructor(player,initPos) {
-        super(player, (player === 'white' ? "images/white-queen.svg" : "images/black-queen.svg"),initPos);
+    constructor(player,initPos, hasMoved) {
+        super(player, (player === 'white' ? "images/white-queen.svg" : "images/black-queen.svg"),initPos, hasMoved);
     }
 
     isMovePossible([destRow, destCol]) {
-        let [sourceRow, sourceCol] = this.getCurrentPos();
+        let [sourceRow, sourceCol] = this.currentPos;
         let rowDiff = Math.abs(sourceRow - destRow);
         let colDiff = Math.abs(sourceCol - destCol);
         return (rowDiff === 0 && colDiff > 0) || (rowDiff > 0 && colDiff === 0) || (rowDiff > 0 && colDiff === rowDiff);
     }
 
     getPathToDest([destRow, destCol]) {
-        let [sourceRow,sourceCol] = this.getCurrentPos();
+        let [sourceRow,sourceCol] = this.currentPos;
         let rowDiff = sourceRow - destRow;
         let colDiff = sourceCol - destCol;
         let path = [];
@@ -60,7 +60,7 @@ export default class Queen extends Piece {
     }
 
     getPossibleMoves() { //current position of the queen
-        const [row,col] = this.getCurrentPos();
+        const [row,col] = this.currentPos;
         let moves=[];
         for (let i=-7; i<=7; i++) {
             if (i!==0) {
