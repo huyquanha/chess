@@ -8,6 +8,11 @@ ol, ul {
     padding-left: 30px;
 }
 
+h1 {
+    text-align: center;
+    margin-top: 40px;
+}
+
 .board-row:after {
     clear: both;
     content: "";
@@ -41,19 +46,22 @@ ol, ul {
     display: flex; /*display the child elements in one direction, in this case row direction => horizontal*/
     flex-direction: row;
     margin-left: 25%;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .game-info {
     margin-left: 20px;
 }
 
-.icons-attribution, .status, .fallen-soldier-block, .evolve-picker, .action-buttons {
+.icons-attribution, .status, .evolve-picker, .fallen-soldier-block {
     margin-top: 20px;
     min-height: 50px;
-    /*border: 1px solid black;*/
 }
 
+.action-buttons {
+    margin-top: 30px;
+    text-align: center;
+}
 
 /*Board color scheme Wheat from http://omgchess.blogspot.com/2015/09/chess-board-color-schemes.html*/
 .dark-square {
@@ -80,5 +88,6 @@ h3 {
 }
 
 input[type="submit"],select, .action-buttons button {
-    margin-left: 10px;
+    margin-left: 15px;
+    text-align: center;
 }

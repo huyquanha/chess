@@ -4,15 +4,8 @@
     <list default="true" id="32d27a61-bab9-4521-bf5e-a1fd34325a43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/helper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/bishop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/bishop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/king.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/king.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/knight.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/knight.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pieces/pawn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/pawn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/piece.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/piece.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/queen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/queen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/rook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/rook.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,17 +21,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pieces/piece.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="187">
               <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="569" column="50" selection-start-line="569" selection-start-column="36" selection-end-line="569" selection-end-column="50" />
+            <state relative-caret-position="211">
+              <caret line="107" column="73" selection-start-line="107" selection-start-column="73" selection-end-line="107" selection-end-column="73" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -47,19 +40,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/helpers/evolve-picker.js">
+        <entry file="file://$PROJECT_DIR$/src/pieces/pawn.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
+            <state relative-caret-position="35">
+              <caret line="17" column="58" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="204">
+              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -67,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/fallen-soldier-block.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="187">
               <caret line="13" column="56" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -135,15 +128,15 @@
         <option value="$PROJECT_DIR$/src/components/board.js" />
         <option value="$PROJECT_DIR$/src/helpers/evolve-picker.js" />
         <option value="$PROJECT_DIR$/src/pieces/knight.js" />
-        <option value="$PROJECT_DIR$/src/pieces/pawn.js" />
         <option value="$PROJECT_DIR$/src/pieces/queen.js" />
         <option value="$PROJECT_DIR$/src/pieces/rook.js" />
         <option value="$PROJECT_DIR$/src/helpers/helper.js" />
         <option value="$PROJECT_DIR$/src/pieces/bishop.js" />
         <option value="$PROJECT_DIR$/src/pieces/king.js" />
         <option value="$PROJECT_DIR$/src/pieces/piece.js" />
-        <option value="$PROJECT_DIR$/src/components/game.js" />
         <option value="$PROJECT_DIR$/src/index.css" />
+        <option value="$PROJECT_DIR$/src/pieces/pawn.js" />
+        <option value="$PROJECT_DIR$/src/components/game.js" />
       </list>
     </option>
   </component>
@@ -159,7 +152,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -199,6 +191,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,7 +228,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.Debug Application">
+  <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -285,11 +278,13 @@
       <workItem from="1554933563224" duration="1510000" />
       <workItem from="1554935534501" duration="1290000" />
       <workItem from="1554964738252" duration="9658000" />
+      <workItem from="1555485807085" duration="1060000" />
+      <workItem from="1555537757356" duration="5678000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196795000" />
+    <option name="totallyTimeSpent" value="203533000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -301,7 +296,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21621622" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -317,7 +313,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3285968" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007949" side_tool="true" weight="0.39076376" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49920508" visible="true" weight="0.5328597" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49920508" visible="true" weight="0.21847247" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -374,26 +370,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/board.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/square.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/helpers/helper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -401,13 +377,6 @@
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pieces/piece.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -422,13 +391,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pieces/pawn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-210">
-          <caret line="4" column="113" lean-forward="true" selection-start-line="4" selection-start-column="113" selection-end-line="4" selection-end-column="113" />
         </state>
       </provider>
     </entry>
@@ -453,10 +415,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/fallen-soldier-block.js">
+    <entry file="file://$PROJECT_DIR$/src/components/board.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="56" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
+        <state relative-caret-position="65">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/square.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -465,25 +437,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/helpers/evolve-picker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
+        <state relative-caret-position="156">
           <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="569" column="50" selection-start-line="569" selection-start-column="36" selection-end-line="569" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="204">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/fallen-soldier-block.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="56" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pieces/piece.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pieces/pawn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="17" column="58" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="107" column="73" selection-start-line="107" selection-start-column="73" selection-end-line="107" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

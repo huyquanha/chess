@@ -29,6 +29,7 @@ export default class Game extends Component {
                 curPlayer: 'white',
                 evolvePawnRow: -1,
                 evolvePawnCol: -1,
+                lastMove: [],
             }],
             status: '',
             sourceRow: -1,
@@ -188,6 +189,7 @@ export default class Game extends Component {
                     curPlayer: curPlayer, //player not change, because we have to wait for pawn evolving
                     evolvePawnRow: destRow,
                     evolvePawnCol: destCol,
+                    lastMove: [destRow, destCol],
                 }]),
                 status: 'Please select one of the drop down type to evolve',
                 stepNumber: this.state.stepNumber + 1,
@@ -214,6 +216,7 @@ export default class Game extends Component {
                     curPlayer: curPlayer === 'white' ? 'black' : 'white',
                     evolvePawnRow: -1,
                     evolvePawnCol: -1,
+                    lastMove: [destRow, destCol]
                 }]),
                 status: status,
                 stepNumber: this.state.stepNumber + 1,
@@ -301,6 +304,7 @@ export default class Game extends Component {
                                     curPlayer: curPlayer === 'white' ? 'black' : 'white',
                                     evolvePawnRow: -1,
                                     evolvePawnCol: -1,
+                                    lastMove: [sourceRow, destCol],
                                 }),
                                 status: status,
                                 sourceRow: -1,
@@ -391,6 +395,7 @@ export default class Game extends Component {
                     curPlayer: curPlayer === 'white' ? 'black' : 'white',
                     evolvePawnRow: -1,
                     evolvePawnCol: -1,
+                    lastMove: current.lastMove.slice(), //because last move is the same as previous move
                 }]),
                 status: status,
                 sourceRow: -1,
@@ -460,8 +465,8 @@ export default class Game extends Component {
                         let checkPath = enemy.getPathToDest(kingPos); //checkPath can never be of length 0, otherwise enemy is already a checkmater
                         let moveOnToCheckPath = false;
                         for (let [row, col] of checkPath) {
-                            if (destRow===row && destCol===col) { //means piece is going to move onto the checkpath
-                                moveOnToCheckPath=true;
+                            if (destRow === row && destCol === col) { //means piece is going to move onto the checkpath
+                                moveOnToCheckPath = true;
                             }
                             if (squares[row][col]) {
                                 blockers.push(squares[row][col]);
@@ -472,7 +477,7 @@ export default class Game extends Component {
                         //and it does not eat the potential checkmater
                         //and its next move is not another space on the checkpath
                         //then king is in danger
-                        if (blockers.length === 1 && blockers[0]===piece && (destRow !== enemyRow || destCol !== enemyCol) && !moveOnToCheckPath) {
+                        if (blockers.length === 1 && blockers[0] === piece && (destRow !== enemyRow || destCol !== enemyCol) && !moveOnToCheckPath) {
                             return true;
                         }
                     }
@@ -553,27 +558,30 @@ export default class Game extends Component {
             }
         }
         return (
-            <div className="game">
-                <Board squares={current.squares}
-                       onClick={(i, j) => this.handleClick(i, j)}/>
-                <div className="game-info">
-                    <h3>Turn</h3>
-                    <div id="player-turn-box"
-                         style={{
-                             backgroundColor:
-                                 current.curPlayer === 'white' ? "#fff" : "#000"
-                         }}/>
-                    <EvolvePicker onSubmit={(type) => this.handleEvolve(type)}/>
-                    <div className="status">{status}</div>
-                    <FallenSoldierBlock whiteFallenSoldiers={current.whiteFallenSoldiers}
-                                        blackFallenSoldiers={current.blackFallenSoldiers}/>
-                    <div className="action-buttons">
-                        <button onClick={this.handleUndo}>Undo</button>
-                        <button onClick={this.handleRedo}>Redo</button>
-                        <button onClick={this.handleStartOver}>Start Over</button>
+            <fragment>
+                <h1><strong>A GAME OF CHESS BY KEVIN</strong></h1>
+                <div className="game">
+                    <Board squares={current.squares}
+                           onClick={(i, j) => this.handleClick(i, j)}/>
+                    <div className="game-info">
+                        <h3>Turn</h3>
+                        <div id="player-turn-box"
+                             style={{
+                                 backgroundColor:
+                                     current.curPlayer === 'white' ? "#fff" : "#000"
+                             }}/>
+                        <EvolvePicker onSubmit={(type) => this.handleEvolve(type)}/>
+                        <div className="status">{status}</div>
+                        <FallenSoldierBlock whiteFallenSoldiers={current.whiteFallenSoldiers}
+                                            blackFallenSoldiers={current.blackFallenSoldiers}/>
                     </div>
                 </div>
-            </div>
+                <div className="action-buttons">
+                    <button onClick={this.handleUndo}>Undo</button>
+                    <button onClick={this.handleRedo}>Redo</button>
+                    <button onClick={this.handleStartOver}>Start Over</button>
+                </div>
+            </fragment>
         )
     }
 
@@ -682,6 +690,7 @@ export default class Game extends Component {
                 curPlayer: 'white',
                 evolvePawnRow: -1,
                 evolvePawnCol: -1,
+                lastMove: [],
             }],
             status: '',
             sourceRow: -1,
@@ -693,7 +702,7 @@ export default class Game extends Component {
     //handle undo action button
     handleUndo() {
         let moveComplete = this.state.sourceRow === -1 && this.state.sourceCol === -1;
-        let lastStep = Math.max(this.state.stepNumber - 1, 0)
+        let lastStep = Math.max(this.state.stepNumber - 1, 0);
         if (moveComplete) { //undo is only possible if a move is complete
             this.setState({
                 stepNumber: lastStep,
