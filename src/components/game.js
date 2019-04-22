@@ -29,7 +29,7 @@ export default class Game extends Component {
                 curPlayer: 'white',
                 evolvePawnRow: -1,
                 evolvePawnCol: -1,
-                lastMove: [],
+                lastMove: null,
             }],
             status: '',
             sourceRow: -1,
@@ -104,7 +104,21 @@ export default class Game extends Component {
                 })
             } else {
                 const isDestEnemyOccupied = squares[i][j] ? true : false;
-                const isMovePossible = squares[sourceRow][sourceCol].isMovePossible([i, j], isDestEnemyOccupied);
+                let isDestPawnCaptured;
+                if (current.lastMove) {
+                    const source = current.lastMove[0];
+                    const dest = current.lastMove[1];
+                    const lastPiece = squares[dest[0]][dest[1]];
+                    isDestPawnCaptured = squares[sourceRow][sourceCol] instanceof Pawn
+                        && lastPiece instanceof Pawn && dest[0] === sourceRow
+                        && (curPlayer === 'white' ? sourceRow ===3 : sourceRow ===4)
+                        && (lastPiece.player === 'white' ? source[0] ===6 : source[0]===1)
+                        && j === dest[1];
+                }
+                else {
+                    isDestPawnCaptured = false;
+                }
+                const isMovePossible = squares[sourceRow][sourceCol].isMovePossible([i, j], isDestEnemyOccupied,isDestPawnCaptured);
                 const isPathEmpty = this.isPathEmpty(squares, squares[sourceRow][sourceCol], [i, j]);
                 const kingInDanger = this.kingInDanger(current, [sourceRow, sourceCol], [i, j]);
                 if (!isMovePossible) {
@@ -132,14 +146,14 @@ export default class Game extends Component {
                          * we already check that it has not been moved if |j-sourceCol|===2 */
                         this.handleEnterCastle(history, sourceRow, sourceCol, j);
                     } else { //normal move
-                        this.movePiece(history, sourceRow, sourceCol, i, j, isDestEnemyOccupied);
+                        this.movePiece(history, sourceRow, sourceCol, i, j, isDestEnemyOccupied, isDestPawnCaptured);
                     }
                 }
             }
         }
     }
 
-    movePiece(history, srcRow, srcCol, destRow, destCol, isDestEnemyOccupied) {
+    movePiece(history, srcRow, srcCol, destRow, destCol, isDestEnemyOccupied, isDestPawnCaptured) {
         const current = history[history.length - 1];
         const squares = this.cloneSquares(current.squares);
         const [whitePieces, blackPieces] = this.populatePieces(squares);
@@ -158,6 +172,18 @@ export default class Game extends Component {
                 whitePieces.delete(squares[destRow][destCol]);
                 whiteFallenSoldiers.push(squares[destRow][destCol]);
             }
+        }
+        else if (isDestPawnCaptured) {
+            const dest = current.lastMove[1];
+            const lastPiece = squares[dest[0]][dest[1]];
+            if (curPlayer === 'white') {
+                blackPieces.delete(lastPiece);
+                blackFallenSoldiers.push(lastPiece);
+            } else {
+                whitePieces.delete(lastPiece);
+                whiteFallenSoldiers.push(lastPiece);
+            }
+            squares[dest[0]][dest[1]] = null;
         }
         squares[destRow][destCol] = squares[srcRow][srcCol];
         squares[destRow][destCol].currentPos = [destRow, destCol];
@@ -189,7 +215,7 @@ export default class Game extends Component {
                     curPlayer: curPlayer, //player not change, because we have to wait for pawn evolving
                     evolvePawnRow: destRow,
                     evolvePawnCol: destCol,
-                    lastMove: [destRow, destCol],
+                    lastMove: [[srcRow,srcCol],[destRow,destCol]],
                 }]),
                 status: 'Please select one of the drop down type to evolve',
                 stepNumber: this.state.stepNumber + 1,
@@ -216,7 +242,7 @@ export default class Game extends Component {
                     curPlayer: curPlayer === 'white' ? 'black' : 'white',
                     evolvePawnRow: -1,
                     evolvePawnCol: -1,
-                    lastMove: [destRow, destCol]
+                    lastMove: [[srcRow,srcCol],[destRow,destCol]]
                 }]),
                 status: status,
                 stepNumber: this.state.stepNumber + 1,
@@ -304,7 +330,7 @@ export default class Game extends Component {
                                     curPlayer: curPlayer === 'white' ? 'black' : 'white',
                                     evolvePawnRow: -1,
                                     evolvePawnCol: -1,
-                                    lastMove: [sourceRow, destCol],
+                                    lastMove: [[sourceRow,sourceCol],[sourceRow,destCol]],
                                 }),
                                 status: status,
                                 sourceRow: -1,
@@ -558,7 +584,7 @@ export default class Game extends Component {
             }
         }
         return (
-            <fragment>
+            <React.Fragment>
                 <h1><strong>A GAME OF CHESS BY KEVIN</strong></h1>
                 <div className="game">
                     <Board squares={current.squares}
@@ -581,7 +607,7 @@ export default class Game extends Component {
                     <button onClick={this.handleRedo}>Redo</button>
                     <button onClick={this.handleStartOver}>Start Over</button>
                 </div>
-            </fragment>
+            </React.Fragment>
         )
     }
 
@@ -690,7 +716,7 @@ export default class Game extends Component {
                 curPlayer: 'white',
                 evolvePawnRow: -1,
                 evolvePawnCol: -1,
-                lastMove: [],
+                lastMove: null,
             }],
             status: '',
             sourceRow: -1,

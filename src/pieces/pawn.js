@@ -15,12 +15,12 @@ export default class Pawn extends Piece {
             (this.player === 'black' && row === this.initialPos.blackSourceRow);
     }
 
-    isMovePossible([destRow, destCol], isDestEnemyOccupied) {
+    isMovePossible([destRow, destCol], isDestEnemyOccupied, isDestPawnCaptured) {
         let [sourceRow,sourceCol] = this.currentPos;
         let colDiff = Math.abs(sourceCol - destCol);
         let rowDiff = this.player === 'white' ? sourceRow - destRow : destRow - sourceRow;
 
-        if (isDestEnemyOccupied) {
+        if (isDestEnemyOccupied || isDestPawnCaptured) {
             return (rowDiff === 1 && colDiff === 1);
         }
         else if (this.isInitialPosition()) {
