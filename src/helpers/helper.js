@@ -13,8 +13,8 @@ export default function initChessBoard() {
         switch (i) {
             case 0:
             case 7:
-                board[0][i] = new Rook('black',[0,i]);
-                board[7][i] = new Rook('white',[7,i]);
+                board[0][i] = new Rook('black',[0,i],false);
+                board[7][i] = new Rook('white',[7,i],false);
                 break;
             case 1:
             case 6:
@@ -31,8 +31,8 @@ export default function initChessBoard() {
                 board[7][i] = new Queen('white',[7,i]);
                 break;
             case 4:
-                board[0][i] = new King('black',[0,i]);
-                board[7][i] = new King('white',[7,i]);
+                board[0][i] = new King('black',[0,i],false);
+                board[7][i] = new King('white',[7,i],false);
                 break;
             default:
                 break;

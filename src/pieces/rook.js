@@ -1,11 +1,12 @@
 import Piece from './piece';
 
 export default class Rook extends Piece {
-    constructor(player,initPos) {
-        super(player, (player === 'white' ? "images/white-rook.svg" : "images/black-rook.svg"),initPos);
+    constructor(player,initPos, hasMoved) {
+        super(player, (player === 'white' ? "images/white-rook.svg" : "images/black-rook.svg"),initPos, hasMoved);
     }
 
-    isMovePossible([sourceRow, sourceCol], [destRow, destCol]) {
+    isMovePossible([destRow, destCol]) {
+        let [sourceRow, sourceCol] = this.currentPos;
         let rowDiff = Math.abs(sourceRow - destRow);
         let colDiff = Math.abs(sourceCol - destCol);
 
@@ -13,7 +14,7 @@ export default class Rook extends Piece {
     }
 
     getPathToDest([destRow, destCol]) {
-        let [sourceRow,sourceCol] = this.getCurrentPos();
+        let [sourceRow,sourceCol] = this.currentPos;
         let rowDiff = sourceRow - destRow;
         let colDiff = sourceCol - destCol;
         let path = [];
@@ -42,7 +43,7 @@ export default class Rook extends Piece {
     }
 
     getPossibleMoves() { //current position of the rook
-        const [row,col] = this.getCurrentPos();
+        const [row,col] = this.currentPos;
         let moves = [];
         for (let i = -7; i <= 7; i++) {
             if (i !== 0) {
